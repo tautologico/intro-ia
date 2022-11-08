@@ -25,7 +25,7 @@ class MinHeap:
         self.size -= 1
 
         # reestabelece a propriedade do min-heap
-        self._min_heapify(0)
+        self.__min_heapify(0)
 
         return minimo
 
@@ -34,26 +34,26 @@ class MinHeap:
         if self.capacity == self.size:
             self.contents.append(node)
             self.capacity += 1
-        self._insert(indice, node)
+        self.__insert(indice, node)
         self.size += 1
 
 
     # Metodos privados
-    def _pai(self, i):
+    def __pai(self, i):
         return (i - 1) // 2
 
-    def _filho_esquerdo(self, i):
+    def __filho_esquerdo(self, i):
         return i * 2 + 1
 
-    def _filho_direito(self, i):
+    def __filho_direito(self, i):
         return i * 2 + 2
 
-    def _swap(self, i, j):
+    def __swap(self, i, j):
         self.contents[i], self.contents[j] = self.contents[j], self.contents[i]
 
-    def _min_heapify(self, i):
-        l = self._filho_esquerdo(i)
-        r = self._filho_direito(i)
+    def __min_heapify(self, i):
+        l = self.__filho_esquerdo(i)
+        r = self.__filho_direito(i)
 
         # encontra qual o menor dos tres nos: i, l ou r
         minimo = i 
@@ -67,14 +67,14 @@ class MinHeap:
         # se i nao for o menor no, troca de lugar com o menor e continua
         # recursivamente
         if minimo != i:
-            self._swap(i, minimo)
-            self._min_heapify(minimo)
+            self.__swap(i, minimo)
+            self.__min_heapify(minimo)
 
-    def _insert(self, i, node):
+    def __insert(self, i, node):
         self.contents[i] = node 
-        while i > 0 and self.contents[self._pai(i)].f > self.contents[i].f:
-            self._swap(i, self._pai(i))
-            i = self._pai(i)
+        while i > 0 and self.contents[self.__pai(i)].f > self.contents[i].f:
+            self.__swap(i, self.__pai(i))
+            i = self.__pai(i)
 
 
 # uma fila de prioridade que retorna os nos de valor minimo primeiro
